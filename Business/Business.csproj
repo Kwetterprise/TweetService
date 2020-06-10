@@ -2,14 +2,18 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<nullable>enable</nullable>
-		<RootNamespace>Kwetterprise.TweetService.Common</RootNamespace>
-		<AssemblyName>Kwetterprise.TweetService.Common</AssemblyName>
+		<RootNamespace>Kwetterprise.TweetService.Business</RootNamespace>
+		<AssemblyName>Kwetterprise.TweetService.Business</AssemblyName>
 		<nullable>enable</nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Kwetterprise.EventSourcing.Client" Version="1.0.25" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Common\Common.csproj" />
+		<ProjectReference Include="..\Data\Data.csproj" />
 	</ItemGroup>
 
 </Project>

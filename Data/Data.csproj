@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>Kwetterprise.TweetService.Data</RootNamespace>
+		<AssemblyName>Kwetterprise.TweetService.Data</AssemblyName>
+		<nullable>enable</nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Kwetterprise.EventSourcing.Client" Version="1.0.25" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Common\Common.csproj" />
+	</ItemGroup>
+
+</Project>
