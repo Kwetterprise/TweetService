@@ -1,0 +1,312 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj",
+        "projectName": "Kwetterprise.TweetService.Business",
+        "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Kwetterprise\\TweetService\\Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\NuGet Library": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj"
+              },
+              "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Kwetterprise.EventSourcing.Client": {
+              "target": "Package",
+              "version": "[1.1.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015135\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj",
+        "projectName": "Kwetterprise.TweetService.Common",
+        "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\NuGet Library": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Kwetterprise.EventSourcing.Client": {
+              "target": "Package",
+              "version": "[1.1.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015135\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj",
+        "projectName": "Kwetterprise.TweetService.Data",
+        "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\NuGet Library": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Kwetterprise.EventSourcing.Client": {
+              "target": "Package",
+              "version": "[1.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015135\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj",
+        "projectName": "Kwetterprise.TweetService.Web",
+        "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\NuGet Library": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj"
+              },
+              "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj"
+              },
+              "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj": {
+                "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Kwetterprise.EventSourcing.Client": {
+              "target": "Package",
+              "version": "[1.1.3, )"
+            },
+            "Kwetterprise.ServiceDiscovery.Client": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015135\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

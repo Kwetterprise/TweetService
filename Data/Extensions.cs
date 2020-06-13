@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Data.Context;
+using Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kwetterprise.TweetService.Data
 {
@@ -10,14 +14,14 @@ namespace Kwetterprise.TweetService.Data
 
     public static class Extensions
     {
-        public static TweetDto ToDto(this TweetPosted @event, AccountEntity account)
+        public static Option<AccountEntity> AccountById(this ITweetContext context, Guid id)
         {
-            return new TweetDto(@event.Id, account.ToDto(), @event.Content, @event.ParentTweet);
+            return context.Accounts.SingleOrDefault(x => x.Id == id).OrElse($"No user with id {id} found.");
         }
 
-        public static AccountDto ToDto(this AccountEntity entity)
+        public static Option<TweetEntity> TweetById(this ITweetContext context, Guid id)
         {
-            return new AccountDto(entity.Id, entity.Username, entity.Role, entity.ProfilePicture);
+            return context.Tweets.SingleOrDefault(x => x.Id == id).OrElse($"No tweet with id {id} exists.");
         }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "Cqb0aY5SSFJtDCmhhNgpPFE8a5KNEdMTFFn1MMAQdO0p/PKl2R9dpN8EYi9NlTCKzxcuU1L7uhzWGLcncmc2Mg==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tim\\.nuget\\packages\\confluent.kafka\\1.4.3\\confluent.kafka.1.4.3.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\kwetterprise.eventsourcing.client\\1.1.3\\kwetterprise.eventsourcing.client.1.1.3.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\librdkafka.redist\\1.4.2\\librdkafka.redist.1.4.2.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.4\\microsoft.extensions.configuration.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.4\\microsoft.extensions.configuration.abstractions.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.4\\microsoft.extensions.configuration.binder.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.4\\microsoft.extensions.dependencyinjection.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.4\\microsoft.extensions.dependencyinjection.abstractions.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.logging\\3.1.4\\microsoft.extensions.logging.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.4\\microsoft.extensions.logging.abstractions.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.options\\3.1.4\\microsoft.extensions.options.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.4\\microsoft.extensions.primitives.3.1.4.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\system.reactive\\4.4.1\\system.reactive.4.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}

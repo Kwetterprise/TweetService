@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Kwetterprise.TweetService.Data;
+using Kwetterprise.TweetService.Data.Entity;
 
 namespace Business.EventProcessor
 {
@@ -18,8 +21,8 @@ namespace Business.EventProcessor
 
     public class TweetEventProcessor : ITweetEventProcessor
     {
-        private ILogger<TweetEventProcessor> logger;
-        private ITweetContextFactory contextFactory;
+        private readonly ILogger<TweetEventProcessor> logger;
+        private readonly ITweetContextFactory contextFactory;
 
         public TweetEventProcessor(ILogger<TweetEventProcessor> logger, ITweetContextFactory contextFactory)
         {
@@ -34,21 +37,60 @@ namespace Business.EventProcessor
             switch (@event)
             {
                 case AccountCreated accountCreated:
-                {
-                    using var context = this.contextFactory.Create();
+                    {
+                        using var context = this.contextFactory.Create();
 
-                    break;
-                }
+                        context.Accounts.Add(new AccountEntity(accountCreated.Id, accountCreated.Username, accountCreated.Role, accountCreated.ProfilePicture));
+                        context.SaveChanges();
+                        break;
+                    }
                 case AccountDeleted accountDeleted:
-                    break;
+                    {
+                        using var context = this.contextFactory.Create();
+
+                        var account = context.Accounts.Single(x => x.Id == accountDeleted.AccountId);
+                        context.Accounts.Remove(account);
+                        context.SaveChanges();
+                        break;
+                    }
                 case AccountRoleChanged accountRoleChanged:
-                    break;
+                    {
+                        using var context = this.contextFactory.Create();
+
+                        var account = context.Accounts.Single(x => x.Id == accountRoleChanged.Target);
+                        account.Role = accountRoleChanged.NewRole;
+                        context.SaveChanges();
+                        break;
+                    }
                 case AccountUpdated accountUpdated:
-                    break;
+                    {
+                        using var context = this.contextFactory.Create();
+
+                        var account = context.Accounts.Single(x => x.Id == accountUpdated.Id);
+
+                        account.Username = accountUpdated.NewUsername;
+                        account.ProfilePicture = accountUpdated.NewProfilePicture;
+
+                        context.SaveChanges();
+                        break;
+                    }
                 case TweetDeleted tweetDeleted:
-                    break;
+                    {
+                        using var context = this.contextFactory.Create();
+
+                        var tweet = context.Tweets.Single(x => x.Id == tweetDeleted.Id);
+                        context.Tweets.Remove(tweet);
+                        context.SaveChanges();
+                        break;
+                    }
                 case TweetPosted tweetPosted:
-                    break;
+                    {
+                        using var context = this.contextFactory.Create();
+
+                        context.Tweets.Add(tweetPosted.ToEntity());
+                        context.SaveChanges();
+                        break;
+                    }
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event));
             }

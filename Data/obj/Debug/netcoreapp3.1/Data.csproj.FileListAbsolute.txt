@@ -1,0 +1,14 @@
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.deps.json
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.dll
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.pdb
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Common.dll
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\System.Reactive.dll
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Common.pdb
+D:\Projects\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\System.Reactive.xml
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.CopyComplete
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.dll
+D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.pdb

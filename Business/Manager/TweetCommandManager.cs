@@ -27,7 +27,7 @@
             this.eventPublisher = eventPublisher;
         }
 
-        public async Task<TweetDto> Post(PostTweetRequest request)
+        public async Task<Option<TweetDto>> Post(PostTweetRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Content))
             {
@@ -36,42 +36,52 @@
 
             if (request.Content.Trim().Length > TweetEntity.MaxLength)
             {
-                throw new BadTweetException($"The content cannot be more than {TweetEntity.MaxLength} characters.");
+                return Option<TweetDto>.FromError($"The content cannot be more than {TweetEntity.MaxLength} characters.");
             }
 
             using var context = this.contextFactory.Create();
 
-            var author = context.Accounts.SingleOrDefault(x => x.Id == request.Author)
-                .ThrowIfNull(() => new DoesNotExistException("User", request.Author));
+            var author = context.AccountById(request.Author).Select(x => x.ToDto());
+            if (author.HasFailed)
+            {
+                return author.CastError<TweetDto>();
+            }
 
-            var tweetCreated = new TweetPosted(Guid.NewGuid(), request.Author, request.Content.Trim(), request.Parent);
+            var tweetCreated = new TweetPosted(Guid.NewGuid(), request.Author, request.Content.Trim(), request.Parent, DateTime.UtcNow);
 
             await this.eventPublisher.Publish(tweetCreated, Topic.Tweet);
 
-            return tweetCreated.ToDto(author);
+            return tweetCreated.ToDto(author.Value!);
         }
 
-        public async Task Delete(DeleteTweetRequest request)
+        public async Task<Option> Delete(DeleteTweetRequest request)
         {
             using var context = this.contextFactory.Create();
 
-            var tweet = context.Tweets.SingleOrDefault(x => x.Id == request.Tweet)
-                .ThrowIfNull(() => new DoesNotExistException("Tweet", request.Tweet));
-
-            if (tweet.Author != request.Actor)
+            var tweet = context.TweetById(request.Tweet);
+            if (tweet.HasFailed)
             {
-                var author = context.Accounts.SingleOrDefault(x => x.Id == request.Actor)
-                    .ThrowIfNull(() => new DoesNotExistException("User", request.Actor));
+                return tweet;
+            }
 
-                if (author.Role == AccountRole.User)
+            if (tweet.Value!.Author != request.Actor)
+            {
+                var author = context.AccountById(request.Actor).Select(x => x.ToDto());
+                if (author.HasFailed)
                 {
-                    throw new AuthenticationException("Cannot delete someone else's tweet if you are not moderator or administrator.");
+                    return author.CastError<TweetDto>();
+                }
+
+                if (author.Value!.Role == AccountRole.User)
+                {
+                    return Option.FromError("Cannot delete someone else's tweet if you are not moderator or administrator.");
                 }
             }
 
             var tweetDeleted = new TweetDeleted(request.Tweet, request.Actor);
 
             await this.eventPublisher.Publish(tweetDeleted, Topic.Tweet);
+            return Option.Success;
         }
     }
 }

@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Kwetterprise.EventSourcing.Client" Version="1.0.25" />
+		<PackageReference Include="Kwetterprise.EventSourcing.Client" Version="1.1.3" />
 	</ItemGroup>
 
 </Project>

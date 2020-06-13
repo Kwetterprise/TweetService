@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Data.Context;
+using Kwetterprise.TweetService.Data;
 
 namespace Business.Manager
 {
@@ -9,28 +12,48 @@ namespace Business.Manager
 
     public interface ITweetCommandManager
     {
-        Task<TweetDto> Post(PostTweetRequest request);
+        Task<Option<TweetDto>> Post(PostTweetRequest request);
 
-        Task Delete(DeleteTweetRequest request);
+        Task<Option> Delete(DeleteTweetRequest request);
     }
 
     public interface ITweetQueryManager
     {
-        List<TweetDto> GetFromUser(Guid user, int pageSize, int pageNumber);
+        Option<List<TweetDto>> GetFromUser(Guid user, int pageSize, int pageNumber);
 
-        List<TweetDto> GetForFriends(Guid user, int pageSize, int pageNumber);
+        Option<List<TweetDto>> GetForFriends(Guid user, int pageSize, int pageNumber);
     }
 
     public class TweetQueryManager : ITweetQueryManager
     {
-        public List<TweetDto> GetFromUser(Guid user, int pageSize, int pageNumber)
+        private readonly ITweetContextFactory contextFactory;
+
+        public TweetQueryManager(ITweetContextFactory contextFactory)
         {
-            throw new NotImplementedException();
+            this.contextFactory = contextFactory;
         }
 
-        public List<TweetDto> GetForFriends(Guid user, int pageSize, int pageNumber)
+        public Option<List<TweetDto>> GetFromUser(Guid user, int pageSize, int pageNumber)
         {
-            throw new NotImplementedException();
+            using var context = this.contextFactory.Create();
+
+            var account = context.Accounts.Single(x => x.Id == user).OrElse($"No user with id {user} found.");
+            if (account.HasFailed)
+            {
+                return account.CastError<List<TweetDto>>();
+            }
+
+            return context.Tweets
+                .OrderByDescending(x => x.PostedOn)
+                .Skip(pageNumber * pageSize).Take(pageSize)
+                .AsEnumerable()
+                .Select(x => x.ToDto(account.Value!.ToDto()))
+                .ToList();
+        }
+
+        public Option<List<TweetDto>> GetForFriends(Guid user, int pageSize, int pageNumber)
+        {
+            return Option<List<TweetDto>>.FromError("You have no friends.");
         }
     }
 }

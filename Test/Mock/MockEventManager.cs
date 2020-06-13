@@ -19,7 +19,7 @@ namespace Test.Mock
         public MockEventManager()
         {
             // var allTopics = Enum.GetValues(typeof(Topic)).Cast<Topic>().ToList();
-            // this.eventManager.StartListening(allTopics);
+            this.eventManager.StartListening();
         }
 
         public Task<IList<EventBase>> WaitForEvents(int count, TimeSpan? timeout)
@@ -33,7 +33,8 @@ namespace Test.Mock
             return this.eventManager.Take(1).Cast<T>().Timeout(timeout ?? TimeSpan.MaxValue).ToTask();
         }
 
-        public Task Publish(EventBase message, Topic topic)
+        public Task Publish<T>(T message, Topic topic)
+            where T : EventBase
         {
             this.Events.Enqueue(message);
             return this.eventManager.Publish(message, topic);

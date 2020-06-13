@@ -16,12 +16,13 @@ namespace Data.Entity
             
         }
 
-        public TweetEntity(Guid id, Guid author, string content, DateTime postedOn)
+        public TweetEntity(Guid id, Guid author, string content, DateTime postedOn, Guid? parentTweet)
         {
             this.Id = id;
             this.Author = author;
             this.Content = content;
             this.PostedOn = postedOn;
+            this.ParentTweet = parentTweet;
         }
 
         [Key]
@@ -40,5 +41,8 @@ namespace Data.Entity
         [Required]
         [Column(Order = 3)]
         public DateTime PostedOn { get; set; }
+
+        [Column(Order = 4)]
+        public Guid? ParentTweet { get; set; }
     }
 }
