@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Data.Context;
+using Data.Entity;
 using Kwetterprise.TweetService.Data;
 
 namespace Business.Manager
@@ -19,9 +21,9 @@ namespace Business.Manager
 
     public interface ITweetQueryManager
     {
-        Option<List<TweetDto>> GetFromUser(Guid user, int pageSize, int pageNumber);
+        Option<TimedData<TweetDto>> GetFromUser(Guid user, Guid? from, bool ascending, int count);
 
-        Option<List<TweetDto>> GetForFriends(Guid user, int pageSize, int pageNumber);
+        Option<TimedData<TweetDto>> GetForFriends(Guid user, Guid? from, bool ascending, int count);
     }
 
     public class TweetQueryManager : ITweetQueryManager
@@ -33,27 +35,55 @@ namespace Business.Manager
             this.contextFactory = contextFactory;
         }
 
-        public Option<List<TweetDto>> GetFromUser(Guid user, int pageSize, int pageNumber)
+        public Option<TimedData<TweetDto>> GetFromUser(Guid user, Guid? from, bool ascending, int count)
         {
             using var context = this.contextFactory.Create();
 
             var account = context.Accounts.Single(x => x.Id == user).OrElse($"No user with id {user} found.");
             if (account.HasFailed)
             {
-                return account.CastError<List<TweetDto>>();
+                return account.CastError<TimedData<TweetDto>>();
             }
 
-            return context.Tweets
-                .OrderByDescending(x => x.PostedOn)
-                .Skip(pageNumber * pageSize).Take(pageSize)
+            var totalCount = context.Tweets.Count(x => x.Author == user);
+
+            var query = context.Tweets
+                .Where(x => x.Author == user);
+
+            if (ascending)
+            {
+                query = query.OrderBy(x => x.PostedOn);
+            }
+            else
+            {
+                query = query.OrderByDescending(x => x.PostedOn);
+            }
+
+            var entities = query.AsEnumerable();
+            if (from.HasValue)
+            {
+                entities = entities.SkipWhile(x => x.Id != from);
+            }
+            
+            var data = entities
+                .Take(count + 1)
                 .AsEnumerable()
                 .Select(x => x.ToDto(account.Value!.ToDto()))
                 .ToList();
+
+            Guid? next = null;
+            if (data.Count == count + 1 && data.Count > 1)
+            {
+                var last = data.Last();
+                next = last.Id;
+                data.Remove(last);
+            }
+            return Option<TimedData<TweetDto>>.FromResult(new TimedData<TweetDto>(data, ascending, next));
         }
 
-        public Option<List<TweetDto>> GetForFriends(Guid user, int pageSize, int pageNumber)
+        public Option<TimedData<TweetDto>> GetForFriends(Guid user, Guid? from, bool ascending, int count)
         {
-            return Option<List<TweetDto>>.FromError("You have no friends.");
+            return Option<TimedData<TweetDto>>.FromError("You have no friends.");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Web.Controllers
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Web.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -29,22 +31,31 @@
         }
 
         [HttpPost]
-        [Route("Post")]
+        [ProducesResponseType(typeof(Option<TweetDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post(PostTweetRequest request)
         {
+            var (id, _) = this.jwtManager.DeconstructClaims(this.HttpContext.User.Claims);
+            if (id != request.Author)
+            {
+                return this.Unauthorized("The caller is not the author of this tweet.");
+            }
+
             return this.Ok(await this.tweetCommandManager.Post(request));
         }
 
+        [HttpDelete]
+        [ProducesResponseType(typeof(Option), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Delete(DeleteTweetRequest request)
         {
             var (id, _) = this.jwtManager.DeconstructClaims(this.HttpContext.User.Claims);
             if (request.Actor != id)
             {
-                return this.BadRequest("The supplied actor is different from the logged in user.");
+                return this.Unauthorized("The supplied actor is different from the logged in user.");
             }
 
-            await this.tweetCommandManager.Delete(request);
-            return this.Ok();
+            return this.Ok(await this.tweetCommandManager.Delete(request));
         }
     }
 }

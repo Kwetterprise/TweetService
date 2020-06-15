@@ -14,17 +14,9 @@ namespace Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(
-                    loggingBuilder =>
-                    {
-                        loggingBuilder.SetMinimumLevel(LogLevel.Trace);
-                    })
-                .ConfigureWebHostDefaults(
-                    webBuilder =>
-                    {
-                        webBuilder
-                            .UseUrls("https://*:6222")
-                            .UseStartup<Startup>();
-                    });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseUrls().UseStartup<Startup>();
+                });
     }
 }

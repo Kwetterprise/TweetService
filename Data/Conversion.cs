@@ -13,7 +13,7 @@ namespace Kwetterprise.TweetService.Data
     {
         public static TweetDto ToDto(this TweetEntity entity, AccountDto dto)
         {
-            return new TweetDto(entity.Id, dto, entity.Content, entity.ParentTweet);
+            return new TweetDto(entity.Id, dto, entity.Content, entity.ParentTweet, entity.PostedOn);
         }
 
         public static AccountDto ToDto(this AccountEntity entity)
@@ -23,7 +23,7 @@ namespace Kwetterprise.TweetService.Data
 
         public static TweetDto ToDto(this TweetPosted @event, AccountDto account)
         {
-            return new TweetDto(@event.Id, account, @event.Content, @event.ParentTweet);
+            return new TweetDto(@event.Id, account, @event.Content, @event.ParentTweet, @event.PostedOn);
         }
 
         public static TweetEntity ToEntity(this TweetPosted posted)

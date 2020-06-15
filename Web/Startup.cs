@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using Kwetterprise.TweetService.Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Web
 {
@@ -23,7 +24,6 @@ namespace Web
     using Kwetterprise.EventSourcing.Client.Local;
     using Kwetterprise.EventSourcing.Client.Models.Event;
     using Kwetterprise.ServiceDiscovery.Client;
-    using Kwetterprise.ServiceDiscovery.Client.Middleware;
     using Kwetterprise.ServiceDiscovery.Client.Models;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Diagnostics;
@@ -55,6 +55,47 @@ namespace Web
             Startup.RegisterEventProcessor(services);
 
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                //c.GeneratePolymorphicSchemas(infoType => {
+                //    if (infoType == typeof(Option<>))
+                //    {
+                //        return new Type[] {
+                //            typeof(Option<AccountDto>),
+                //            typeof(Option<AccountWithTokenDto>)
+                //        };
+                //    }
+                //    return Enumerable.Empty<Type>();
+                //}, discriminator => discriminator == typeof(Option<>) ? "dataType" : null);
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AccountService", Version = "v1" });
+
+                // c.ExampleFilters();
+
+                // c.OperationFilter<AddHeaderOperationFilter>("correlationId", "Correlation Id for the request", false); // adds any string you like to the request headers - in this case, a correlation id
+                c.OperationFilter<AddResponseHeadersFilter>(); // [SwaggerResponseHeader]
+
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>(); // Adds "(Auth)" to the summary so that you can see which endpoints have Authorization
+                // or use the generic method, e.g. c.OperationFilter<AppendAuthorizeToSummaryOperationFilter<MyCustomAttribute>>();
+
+                // add Security information to each operation for OAuth2
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+                // or use the generic method, e.g. c.OperationFilter<SecurityRequirementsOperationFilter<MyCustomAttribute>>();
+
+
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,28 +105,19 @@ namespace Web
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler(configure =>
-                {
-                    configure.Run(async context =>
-                    {
-                        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-
-                        switch (exceptionHandlerPathFeature)
-                        {
-                            default:
-                                {
-                                    context.Response.StatusCode = StatusCodes.Status404NotFound;
-                                    await context.Response.WriteAsync(exceptionHandlerPathFeature.ToString());
-                                    break;
-                                }
-                        }
-                    });
-                });
-            }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TweetService API");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.AddServiceDiscoveryPingMiddleware();
 
@@ -111,6 +143,8 @@ namespace Web
             var jwtSection = configuration.GetSection("Jwt");
             var jwtConfiguration = new JwtConfiguration(jwtSection["Issuer"], jwtSection["Key"]);
             services.AddSingleton(jwtConfiguration);
+
+            services.AddSingleton<JwtManager>();
 
             services.AddAuthentication(x =>
             {
@@ -151,29 +185,26 @@ namespace Web
 
         private static void RegisterKafkaServices(IServiceCollection services, IConfiguration configuration)
         {
-            var (kafkaConfiguration, kafkaConsumerConfiguration) = Startup.CreateKafkaConfigurations(configuration);
+            var kafkaConsumerConfiguration = Startup.CreateKafkaConfigurations(configuration);
 
-            services.AddSingleton(kafkaConfiguration);
+            services.AddSingleton<KafkaConfiguration>(kafkaConsumerConfiguration);
             services.AddSingleton(kafkaConsumerConfiguration);
 
-            //services.AddTransient<IEventPublisher, KafkaEventPublisher>();
-            //services.AddTransient<IEventListener, KafkaEventListener>();
-
-            var eventManager = new LocalEventManager();
-
-            services.AddSingleton<IEventPublisher>(eventManager);
-            services.AddSingleton<IEventListener>(eventManager);
+            services.AddTransient<IEventPublisher, KafkaEventPublisher>();
+            services.AddTransient<IEventListener, KafkaEventListener>();
         }
 
-        private static (KafkaConfiguration, KafkaConsumerConfiguration) CreateKafkaConfigurations(IConfiguration configuration)
+        private static KafkaConsumerConfiguration CreateKafkaConfigurations(IConfiguration configuration)
         {
             var kafkaSection = configuration.GetSection("Kafka");
-            return (new KafkaConfiguration(kafkaSection["Servers"]),
-                new KafkaConsumerConfiguration(
-                    kafkaSection["Servers"],
-                    kafkaSection.GetValue<IEnumerable<Topic>>("Topics"),
-                    kafkaSection["GroupId"],
-                    kafkaSection.GetValue<AutoOffsetReset>("Offset")));
+
+            var topicNames = kafkaSection.GetSection("Topics").GetChildren().Select(x => x.Get<string>());
+
+            return new KafkaConsumerConfiguration(
+                kafkaSection["Servers"],
+                topicNames.Select(x => new Topic(x)),
+                kafkaSection["GroupId"] + $"_{Guid.NewGuid()}",
+                kafkaSection.GetValue<AutoOffsetReset>("Offset"));
         }
 
         private static void RegisterDatabase(IServiceCollection services)

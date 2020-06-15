@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kwetterprise.TweetService.Common.DataTransfer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
@@ -24,9 +26,19 @@ namespace Web.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("GetFromUser")]
-        public IActionResult GetFromUser(Guid id, int pageSize, int pageNumber)
+        [ProducesResponseType(typeof(Option<TimedData<TweetDto>>), StatusCodes.Status200OK)]
+        public IActionResult GetFromUser(Guid id, Guid? from, bool ascending, int count)
         {
-            return this.Ok(this.tweetQueryManager.GetFromUser(id, pageSize, pageNumber));
+            return this.Ok(this.tweetQueryManager.GetFromUser(id, from, ascending, count));
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("Test")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public IActionResult Test()
+        {
+            return this.Ok("Works");
         }
     }
 }

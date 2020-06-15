@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Kwetterprise.TweetService.Business/1.0.0": {
         "dependencies": {
-          "Kwetterprise.EventSourcing.Client": "1.1.3",
+          "Kwetterprise.EventSourcing.Client": "1.1.4",
           "Kwetterprise.TweetService.Common": "1.0.0",
           "Kwetterprise.TweetService.Data": "1.0.0",
           "System.Reactive.Reference": "4.4.0.0"
@@ -29,7 +29,7 @@
           }
         }
       },
-      "Kwetterprise.EventSourcing.Client/1.1.3": {
+      "Kwetterprise.EventSourcing.Client/1.1.4": {
         "dependencies": {
           "Confluent.Kafka": "1.4.3",
           "Microsoft.Extensions.Logging": "3.1.5",
@@ -316,7 +316,7 @@
       "System.Reactive/4.4.1": {},
       "Kwetterprise.TweetService.Common/1.0.0": {
         "dependencies": {
-          "Kwetterprise.EventSourcing.Client": "1.1.3"
+          "Kwetterprise.EventSourcing.Client": "1.1.4"
         },
         "runtime": {
           "Kwetterprise.TweetService.Common.dll": {}
@@ -324,7 +324,7 @@
       },
       "Kwetterprise.TweetService.Data/1.0.0": {
         "dependencies": {
-          "Kwetterprise.EventSourcing.Client": "1.1.3",
+          "Kwetterprise.EventSourcing.Client": "1.1.4",
           "Kwetterprise.TweetService.Common": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.1.5"
         },
@@ -355,12 +355,12 @@
       "path": "confluent.kafka/1.4.3",
       "hashPath": "confluent.kafka.1.4.3.nupkg.sha512"
     },
-    "Kwetterprise.EventSourcing.Client/1.1.3": {
+    "Kwetterprise.EventSourcing.Client/1.1.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zzgPLBLwHBJwYqj0qRerdlgyAA1KoWODLlVPbELXLP0e+vmEVcqZ2RbQfM/Tg0/WHqGwIlJdVfBE0HLpxpM4cA==",
-      "path": "kwetterprise.eventsourcing.client/1.1.3",
-      "hashPath": "kwetterprise.eventsourcing.client.1.1.3.nupkg.sha512"
+      "sha512": "sha512-PXT7wK1ehgyu5TeIwAEf7lGWrA/odU5/hZUVJPkz/0C5jSYtx9w1lcQUA6Ua9Y8FvpsBrhzD4FYRwZfgObzwCw==",
+      "path": "kwetterprise.eventsourcing.client/1.1.4",
+      "hashPath": "kwetterprise.eventsourcing.client.1.1.4.nupkg.sha512"
     },
     "librdkafka.redist/1.4.2": {
       "type": "package",

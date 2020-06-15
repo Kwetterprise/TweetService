@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fohShfbXGgyjK8G3fmWbcjJhbmvPa6EEkeCNT/G4ho/ldHCESm8giMCxEPaUps2wxwidaaHPOgoVrqvUHh2f2A==",
+  "dgSpecHash": "1/G8Nu5hMtOJRnzD2aTMcz1tWgGedY+LaDm4UMDhhlEn9QH23dFr9SSxYU+M9U9lGrEHhvYf89JzrDGE3d7hRg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tim\\.nuget\\packages\\confluent.kafka\\1.4.3\\confluent.kafka.1.4.3.nupkg.sha512",
-    "C:\\Users\\Tim\\.nuget\\packages\\kwetterprise.eventsourcing.client\\1.1.3\\kwetterprise.eventsourcing.client.1.1.3.nupkg.sha512",
+    "C:\\Users\\Tim\\.nuget\\packages\\kwetterprise.eventsourcing.client\\1.1.4\\kwetterprise.eventsourcing.client.1.1.4.nupkg.sha512",
     "C:\\Users\\Tim\\.nuget\\packages\\librdkafka.redist\\1.4.2\\librdkafka.redist.1.4.2.nupkg.sha512",
     "C:\\Users\\Tim\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Tim\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
