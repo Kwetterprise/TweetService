@@ -34,11 +34,11 @@ namespace Web.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("Test")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public IActionResult Test()
+        [Route("GetAll")]
+        [ProducesResponseType(typeof(TimedData<TweetDto>), StatusCodes.Status200OK)]
+        public IActionResult GetAll(Guid? from, bool ascending, int count)
         {
-            return this.Ok("Works");
+            return this.Ok(this.tweetQueryManager.GetAll(from, ascending, count));
         }
     }
 }

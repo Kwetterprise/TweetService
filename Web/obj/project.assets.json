@@ -7865,44 +7865,40 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tim\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\timess\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj",
+      "projectUniqueName": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Web\\Web.csproj",
       "projectName": "Kwetterprise.TweetService.Web",
-      "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\Web.csproj",
-      "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Kwetterprise\\TweetService\\Web\\obj\\",
+      "projectPath": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Web\\Web.csproj",
+      "packagesPath": "C:\\Users\\timess\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Web\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\timess\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\NuGet": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\NuGet Library": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj": {
-              "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Business\\Business.csproj"
+            "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Business\\Business.csproj"
             },
-            "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
-              "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Common\\Common.csproj"
+            "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Common\\Common.csproj"
             },
-            "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj": {
-              "projectPath": "D:\\Projects\\Kwetterprise\\TweetService\\Data\\Data.csproj"
+            "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\timess\\Projects\\School\\Kwetterprise\\TweetService\\Data\\Data.csproj"
             }
           }
         }
@@ -7967,6 +7963,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7975,7 +7977,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015135\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

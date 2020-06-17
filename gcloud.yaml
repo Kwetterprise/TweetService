@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tweet-service
+spec:
+  type: NodePort
+  selector:
+    app: tweet
+  ports:
+  - port: 6224
+    targetPort: 6224
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tweet-deployment
+  labels:
+    app: tweet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tweet
+  template:
+    metadata:
+      labels:
+        app: tweet
+    spec:
+      containers:
+      - name: tweet
+        image: kwetterprise/tweet
+        ports:
+        - containerPort: 6224

@@ -12,3 +12,17 @@ D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.C
 D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.CopyComplete
 D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.dll
 D:\Projects\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.pdb
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.deps.json
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.dll
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.pdb
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Common.dll
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\System.Reactive.dll
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\Kwetterprise.TweetService.Common.pdb
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\bin\Debug\netcoreapp3.1\System.Reactive.xml
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Data.csproj.CopyComplete
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.dll
+C:\Users\timess\Projects\School\Kwetterprise\TweetService\Data\obj\Debug\netcoreapp3.1\Kwetterprise.TweetService.Data.pdb
