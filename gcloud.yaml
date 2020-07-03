@@ -31,3 +31,8 @@ spec:
         image: kwetterprise/tweet
         ports:
         - containerPort: 6224
+        env:
+          - name: Kafka__Servers
+            value: kafka-service:9092
+          - name: Logging__Default
+            value: Trace

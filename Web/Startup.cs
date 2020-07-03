@@ -177,10 +177,12 @@ namespace Web
         private static void RegisterDiscoveryClient(IServiceCollection services, IConfiguration configuration)
         {
             var serviceSection = configuration.GetSection("ServiceDiscovery");
-
-            var serviceConfiguration = new ServiceConfiguration(serviceSection["ServiceName"], serviceSection["ServiceUrl"]);
-            var apiGatewayConfiguration = new ServiceDiscoveryConfiguration(serviceSection["ServiceDiscoveryUrl"]);
-            services.AddServiceDiscoveryClientWorker(serviceConfiguration, apiGatewayConfiguration);
+            if (serviceSection.GetValue<bool>("Active"))
+            {
+                var serviceConfiguration = new ServiceConfiguration(serviceSection["ServiceName"], serviceSection["ServiceUrl"]);
+                var apiGatewayConfiguration = new ServiceDiscoveryConfiguration(serviceSection["ServiceDiscoveryUrl"]);
+                services.AddServiceDiscoveryClientWorker(serviceConfiguration, apiGatewayConfiguration);
+            }
         }
 
         private static void RegisterKafkaServices(IServiceCollection services, IConfiguration configuration)
